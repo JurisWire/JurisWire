@@ -1,0 +1,28 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Legal Help | JurisWire Legal</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="topbar"><div class="container"><div>JurisWire Legal</div><div>Professional Information • Legal Enquiries</div></div></div>
+<header class="site-header"><div class="container brand-row"><div><a href="index.html" class="logo">JURIS<em>WIRE</em></a><div class="tagline">LEGAL</div></div><button class="mobile-toggle">MENU</button><nav class="nav"><a href="index.html">NEWS</a><a href="legal.html">LEGAL OVERVIEW</a><a class="active" href="consultation.html">LEGAL HELP</a><a href="legal.html#practice">PRACTICE AREAS</a><a href="legal.html#contact">CONTACT</a></nav></div></header>
+<main><section class="legal-hero"><div class="container"><div class="eyebrow" style="color:#d9b767">JurisWire Legal Enquiries</div><h1>Request a Legal Consultation</h1><p>A structured enquiry channel for individuals and organisations seeking professional legal assistance. The production form should route enquiries securely to the appropriate legal professional.</p></div></section>
+<section class="section"><div class="container consultation-grid"><div><div class="notice"><strong>Professional disclaimer:</strong> Submission of an enquiry does not by itself create an advocate-client relationship. Information should remain general until conflicts and engagement requirements are checked.</div>
+<section class="panel" style="margin-top:18px">
+  <div class="eyebrow">PRIVATE &amp; CONFIDENTIAL</div>
+  <h2>Submit a Legal Enquiry</h2>
+  <p>Your enquiry is intended for private review by the JurisWire Legal team and will not be displayed publicly. Submission does not by itself create an advocate-client relationship or amount to acceptance of a professional engagement.</p>
+</section>
+<form class="panel demo-form consult-form"><div class="form-two"><label>Name<input required placeholder="Your name"></label><label>Contact<input required placeholder="Phone / email"></label></div><label>Nature of Matter<select><option>Litigation & Dispute Resolution</option><option>Supreme Court / High Court</option><option>Civil & Commercial</option><option>Criminal</option><option>Banking / DRT / SARFAESI</option><option>Arbitration</option><option>Family / Matrimonial</option><option>RERA / Property</option><option>Other</option></select></label><label>Brief Description<textarea rows="7" required placeholder="Briefly describe the legal issue. Avoid sharing highly confidential material at this initial stage."></textarea></label><div class="form-two"><label>Preferred Mode<select><option>Phone</option><option>Video Conference</option><option>Office Meeting</option><option>Email</option></select></label><label>Urgency<select><option>Normal</option><option>Time-sensitive</option><option>Immediate court deadline</option></select></label></div><button class="btn" type="submit">SUBMIT LEGAL ENQUIRY</button><small class="form-msg"></small></form></div><aside><div class="panel"><h3>Legal Help Areas</h3><div class="mini-list"><span>Court Litigation</span><span>Commercial Disputes</span><span>Banking & Recovery</span><span>Arbitration</span><span>Family Matters</span><span>Property & RERA</span></div></div><div class="panel"><h3>For Production</h3><p>Connect this form to secure email/CRM storage, consent controls, spam protection and conflict-check workflow.</p></div></aside></div></section></main><footer class="footer"><div class="container"><div class="copyright">© 2026 JurisWire Legal. Professional information only; no guarantee of engagement or outcome.</div></div></footer><script src="script.js"></script>
+<script>
+(function(){
+ const form=document.querySelector('form'); if(!form)return;
+ form.addEventListener('submit',function(e){
+  e.preventDefault();
+  const fd=new FormData(form), item={};
+  fd.forEach((v,k)=>item[k]=v);
+  item.id='JWE-'+Date.now().toString().slice(-8);
+  item.status='New'; item.submittedAt=new Date().toISOString();
+  const all=JSON.parse(localStorage.getItem('jwLegalEnquiries')||'[]');
+  all.unshift(item); localStorage.setItem('jwLegalEnquiries',JSON.stringify(all));
+  alert('Your legal enquiry has been submitted for private review. Reference: '+item.id);
+  form.reset();
+ });
+})();
+</script>
+</body></html>

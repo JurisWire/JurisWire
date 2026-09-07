@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>JurisWire Desk | Publish</title><link rel="stylesheet" href="styles.css"></head><body>
+<div class="topbar"><div class="container"><div>JurisWire Editorial Workspace</div><div>Prototype • Local browser storage</div></div></div>
+<header class="site-header"><div class="container brand-row"><div><a href="index.html" class="logo">JURIS<em>WIRE</em></a><div class="tagline">EDITORIAL DESK</div></div><nav class="nav"><a href="index.html">VIEW SITE</a><a class="active" href="admin.html">EDITORIAL DESK</a><a href="#careerModeration">CAREER MODERATION</a><a href="statutes.html">LEX LIBRARY</a><a href="careers.html">PUBLIC CAREERS</a></nav></div></header>
+<main><section class="page-hero"><div class="container"><div class="eyebrow">JurisWire Desk</div><h1>Publish a New Article</h1><p>Newsroom publishing workflow for legal news, judgments, explainers and career updates.</p></div></section>
+<section class="section"><div class="container admin-grid"><form id="articleForm" class="panel publish-form">
+<label>Headline<input id="articleTitle" required placeholder="Enter article headline"></label>
+<div class="form-two"><label>Section<select id="articleSection"><option>Supreme Court</option><option>High Courts</option><option>Judgments</option><option>Legal News</option><option>Explainers & Analysis</option><option>Lex Library</option><option>Legal Careers</option></select></label><label>Author<input id="articleAuthor" value="JurisWire News Desk"></label></div>
+<label>Short Summary<textarea id="articleSummary" rows="3" placeholder="One or two sentence summary"></textarea></label>
+<label>Article Body<textarea id="articleBody" rows="12" required placeholder="Write or paste the full story here..."></textarea></label>
+<div class="form-two"><label>Tags<input id="articleTags" placeholder="Supreme Court, Bail, Criminal Law"></label><label>Featured Image URL<input id="articleImage" placeholder="https://..."></label></div>
+<div class="publish-actions"><button class="btn alt" type="button" id="saveDraft">SAVE DRAFT</button><button class="btn" type="submit">PUBLISH ARTICLE</button></div><small id="publishMsg" class="form-msg"></small></form>
+<aside><div class="panel"><h3>Publishing Checklist</h3><ul class="clean-list"><li>Verify case name, court and date.</li><li>Use a clear, non-sensational headline.</li><li>Link or upload the source judgment/order.</li><li>Separate reporting from opinion.</li><li>Add relevant court, Act and subject tags.</li></ul></div><div class="panel"><h3>Recently Published</h3><div id="recentArticles" class="mini-list"></div></div></aside></div></section>
+<section class="section" id="careerModeration"><div class="container"><div class="section-title"><div><div class="eyebrow">JurisWire Legal Careers</div><h2>Opportunity Moderation Queue</h2></div><span class="trust-note">Prototype • Browser-local submissions</span></div><div class="moderation-grid"><div class="panel"><h3>Pending Review</h3><div id="careerModerationQueue" class="moderation-list"></div></div><div class="panel"><h3>Published Listings</h3><div id="careerPublishedAdmin" class="moderation-list"></div></div></div><div class="notice" style="margin-top:18px"><strong>Production requirement:</strong> this moderation workflow must use authenticated admin accounts and server-side storage. Public users must never receive direct publish permissions.</div></div></section>
+<section class="panel" id="legal-enquiries" style="margin-top:24px">
+ <div class="eyebrow">PRIVATE ADMIN AREA</div>
+ <h2>Legal Enquiries Inbox</h2>
+ <p>Private enquiries submitted through “Submit a Legal Enquiry”. They are never displayed publicly.</p>
+ <div id="jw-enquiry-list"></div>
+</section>
+</main>
+<footer class="footer"><div class="container"><div class="copyright">JurisWire Desk prototype. Production version should use authenticated CMS accounts and server-side storage.</div></div></footer><script src="script.js"></script>
+<script>
+(function(){
+ function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+ function render(){
+  const box=document.getElementById('jw-enquiry-list');if(!box)return;
+  const all=JSON.parse(localStorage.getItem('jwLegalEnquiries')||'[]');
+  if(!all.length){box.innerHTML='<p>No legal enquiries received in this browser yet.</p>';return;}
+  box.innerHTML=all.map((x,i)=>`<article class="card" style="margin:12px 0;padding:16px">
+   <div class="eyebrow">${esc(x.id)} · ${esc(x.status||'New')}</div>
+   <h3>${esc(x.name||x.fullName||'Visitor')}</h3>
+   <p><strong>Matter:</strong> ${esc(x.matterType||x.subject||'Not specified')}</p>
+   <p>${esc(x.message||x.details||x.enquiry||'')}</p>
+   <p>${esc(x.email||'')} ${x.phone?' · '+esc(x.phone):''}</p>
+   <button type="button" onclick="jwReview(${i})">Mark Reviewed</button>
+   <button type="button" onclick="jwDelete(${i})">Delete</button>
+  </article>`).join('');
+ }
+ window.jwReview=function(i){const x=JSON.parse(localStorage.getItem('jwLegalEnquiries')||'[]');if(x[i]){x[i].status='Reviewed';localStorage.setItem('jwLegalEnquiries',JSON.stringify(x));render();}};
+ window.jwDelete=function(i){const x=JSON.parse(localStorage.getItem('jwLegalEnquiries')||'[]');x.splice(i,1);localStorage.setItem('jwLegalEnquiries',JSON.stringify(x));render();};
+ render();
+})();
+</script>
+</body></html>
