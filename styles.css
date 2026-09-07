@@ -235,3 +235,11 @@ section{
     font-size:14px;
   }
 }
+
+.nav-dropdown > .dropdown-menu{
+  display:none !important;
+}
+
+.nav-dropdown:hover > .dropdown-menu{
+  display:block !important;
+}
