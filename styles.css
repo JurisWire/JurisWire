@@ -171,25 +171,12 @@ section{
   }
 }
 
-@media(min-width:901px){
-  .nav-dropdown .dropdown-menu{
-    display:none !important;
-  }
-
-  .nav-dropdown:hover .dropdown-menu{
-    display:block !important;
-  }
-}
-
 .nav-dropdown{
   position:relative;
   display:inline-block;
 }
   .dropdown-menu{
   display:none !important;
-}
-  .nav-dropdown:hover .dropdown-menu{
-  display:block !important;
 }
   .nav-dropdown:hover .dropdown-menu{
   display:block !important;
