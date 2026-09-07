@@ -180,3 +180,71 @@ section{
     display:block !important;
   }
 }
+
+.nav-dropdown{
+  position:relative;
+  display:inline-block;
+}
+  .dropdown-menu{
+  display:none !important;
+}
+  .nav-dropdown:hover .dropdown-menu{
+  display:block !important;
+}
+  .nav-dropdown:hover .dropdown-menu{
+  display:block !important;
+}
+
+.dropdown-menu{
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:230px;
+  background:#ffffff;
+  border:1px solid #e8e3db;
+  border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  padding:8px;
+  z-index:9999;
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:11px 14px;
+  white-space:nowrap;
+  border-radius:6px;
+  text-decoration:none;
+}
+
+.dropdown-menu a:hover{
+  background:#f7f4ef;
+  color:#8d1515;
+}
+
+/* Mobile Bare Acts Dropdown */
+@media(max-width:700px){
+
+  .nav-dropdown{
+    width:100%;
+  }
+
+  .nav-dropdown .dropdown-menu{
+    position:static;
+    display:none !important;
+    min-width:0;
+    width:100%;
+    box-shadow:none;
+    border:none;
+    background:transparent;
+    padding:5px 0 5px 15px;
+  }
+
+  .nav-dropdown.open .dropdown-menu{
+    display:block !important;
+  }
+
+  .dropdown-menu a{
+    padding:9px 12px;
+    font-size:14px;
+  }
+}
