@@ -152,7 +152,7 @@ section{
 
   .dropdown-menu{
     position:static;
-    display:block;
+    display:none;
     box-shadow:none;
     border:none;
     padding:0 0 0 14px;
@@ -162,5 +162,11 @@ section{
   .dropdown-menu a{
     font-size:14px;
     padding:10px 14px;
+  }
+}
+
+@media(max-width:900px){
+  .nav-dropdown.open .dropdown-menu{
+    display:block;
   }
 }
