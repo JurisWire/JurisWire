@@ -107,3 +107,39 @@
 section{
   scroll-margin-top:90px;
 }
+
+/* Bare Acts Dropdown */
+.nav-dropdown{
+  position:relative;
+  display:inline-block;
+}
+
+.dropdown-menu{
+  display:none;
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:220px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:10px;
+  box-shadow:0 10px 30px rgba(0,0,0,.12);
+  padding:8px;
+  z-index:9999;
+}
+
+.nav-dropdown:hover .dropdown-menu{
+  display:block;
+}
+
+.dropdown-menu a{
+  display:block;
+  padding:12px 14px;
+  white-space:nowrap;
+  border-radius:6px;
+}
+
+.dropdown-menu a:hover{
+  background:#f7f4f2;
+  color:var(--red);
+}
