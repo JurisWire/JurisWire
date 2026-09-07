@@ -64,3 +64,12 @@ function renderPublicCareers(){const box=document.querySelector('#publicCareerLi
 function renderCareerModeration(){const queue=document.querySelector('#careerModerationQueue'),pub=document.querySelector('#careerPublishedAdmin');if(!queue&&!pub)return;const items=getCareerSubmissions();if(queue){const pending=items.filter(x=>x.status==='Pending Review'||x.status==='Rejected');queue.innerHTML=pending.length?pending.slice().reverse().map(x=>`<div class="moderation-card"><span class="status-pill ${x.status==='Rejected'?'rejected':'pending'}">${escapeHtml(x.status)}</span><h4>${escapeHtml(x.role)}</h4><p><strong>${escapeHtml(x.organisation)}</strong> • ${escapeHtml(x.type)} • ${escapeHtml(x.location||'No location')}</p><p>${escapeHtml(x.description).slice(0,220)}${x.description.length>220?'…':''}</p><p><small>${escapeHtml(x.id)} • Submitted ${new Date(x.submittedAt).toLocaleString()}</small></p><div class="moderation-actions"><button class="btn small" onclick="moderateCareer('${x.id}','Published')">APPROVE & PUBLISH</button><button class="btn small danger" onclick="moderateCareer('${x.id}','Rejected')">REJECT</button></div></div>`).join(''):'<span>No pending submissions.</span>'}if(pub){const published=items.filter(x=>x.status==='Published');pub.innerHTML=published.length?published.slice().reverse().map(x=>`<div class="moderation-card"><span class="status-pill approved">Published</span><h4>${escapeHtml(x.role)}</h4><p><strong>${escapeHtml(x.organisation)}</strong> • ${escapeHtml(x.type)}</p><p><small>${escapeHtml(x.id)}</small></p><div class="moderation-actions"><button class="btn small danger" onclick="moderateCareer('${x.id}','Rejected')">UNPUBLISH</button></div></div>`).join(''):'<span>No approved public listings yet.</span>'}}
 window.moderateCareer=function(id,status){const items=getCareerSubmissions();const item=items.find(x=>x.id===id);if(!item)return;item.status=status;item.reviewedAt=new Date().toISOString();setCareerSubmissions(items);renderCareerModeration();renderPublicCareers()}
 renderPublicCareers();renderCareerModeration();
+
+document.querySelectorAll('.nav-dropdown > .dropdown-trigger').forEach(trigger=>{
+  trigger.addEventListener('click',e=>{
+    if(window.innerWidth <= 900){
+      e.preventDefault();
+      trigger.parentElement.classList.toggle('open');
+    }
+  });
+});
