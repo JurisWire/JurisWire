@@ -19,3 +19,89 @@
 /* Public Legal Careers board */
 .hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.trust-note{font-size:.82rem;color:var(--muted);font-weight:700}.alt-section{background:var(--soft)}.submission-layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(290px,.6fr);gap:28px;align-items:start}.consent-row{display:flex!important;grid-template-columns:none!important;align-items:flex-start;gap:10px!important;font-weight:600!important;line-height:1.45}.consent-row input{width:auto!important;margin-top:3px}.workflow-list{list-style:none;padding:0;margin:0;counter-reset:step}.workflow-list li{counter-increment:step;display:grid;grid-template-columns:34px 1fr;gap:10px;padding:12px 0;border-bottom:1px solid var(--line)}.workflow-list li:before{content:counter(step);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;font-size:.8rem}.workflow-list strong,.workflow-list span{grid-column:2}.workflow-list strong{margin-top:-30px}.workflow-list span{color:var(--muted);font-size:.88rem}.job-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}.job-meta span{font-size:.74rem;background:var(--soft);border:1px solid var(--line);padding:4px 8px;border-radius:999px;color:#555}.dynamic-listings{margin-top:14px}.moderation-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.moderation-list{display:grid;gap:12px}.moderation-card{border:1px solid var(--line);border-radius:12px;padding:14px;background:#fff}.moderation-card h4{font-family:Georgia,serif;margin:4px 0}.moderation-card p{margin:4px 0;color:var(--muted);font-size:.88rem}.moderation-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.btn.small{padding:8px 11px;font-size:.78rem}.btn.danger{background:#666}.status-pill{display:inline-flex;padding:4px 8px;border-radius:999px;background:#eee;font-size:.72rem;font-weight:800}.status-pill.approved{background:#e8f4e8;color:#276227}.status-pill.pending{background:#fff5d6;color:#775a00}.status-pill.rejected{background:#f6e5e5;color:#7c2222}
 @media(max-width:900px){.submission-layout,.moderation-grid{grid-template-columns:1fr}}
+/* JurisWire Professional Navigation */
+.nav{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  flex-wrap:wrap;
+}
+.nav a{
+  position:relative;
+  display:inline-flex;
+  align-items:center;
+  padding:10px 12px;
+  font-size:14px;
+  font-weight:700;
+  text-decoration:none;
+  color:var(--ink);
+  border-radius:6px;
+  transition:all .2s ease;
+}
+.nav a:hover{
+  color:var(--red);
+  background:#f7f4f2;
+}
+.nav a::after{
+  content:"";
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:4px;
+  height:2px;
+  background:var(--red);
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform .2s ease;
+}
+.nav a:hover::after{
+  transform:scaleX(1);
+}
+.mobile-toggle{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:9px 14px;
+  border-radius:8px;
+  font-weight:700;
+  cursor:pointer;
+}
+@media(max-width:900px){
+  .nav{
+  display:none;
+  width:100%;
+  flex-direction:column;
+  align-items:stretch;
+  gap:0;
+  margin-top:12px;
+  padding:8px;
+  background:#fff;
+  border:1px solid var(--line);
+  border-radius:14px;
+  box-shadow:0 12px 30px rgba(0,0,0,.10);
+}
+  .nav.open{
+  display:flex;
+}
+  .nav a{
+  width:100%;
+  padding:15px 16px;
+  border-radius:8px;
+  border-bottom:1px solid #eee;
+  font-size:15px;
+}
+
+.nav a:last-child{
+  border-bottom:none;
+}
+
+.nav a:hover,
+.nav a:active{
+  background:#f7f4f2;
+  color:var(--red);
+}
+
+.nav a::after{
+  display:none;
+}
+
+}
