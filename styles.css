@@ -170,3 +170,13 @@ section{
     display:block;
   }
 }
+
+@media(min-width:901px){
+  .nav-dropdown .dropdown-menu{
+    display:none !important;
+  }
+
+  .nav-dropdown:hover .dropdown-menu{
+    display:block !important;
+  }
+}
